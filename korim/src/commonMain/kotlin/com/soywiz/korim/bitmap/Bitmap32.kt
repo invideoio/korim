@@ -26,7 +26,7 @@ class Bitmap32(
 
     val intData get() = data.ints
 
-	private val temp = RgbaArray(max2(width, height))
+	private val temp = RgbaArray(max(width, height))
     val bounds: IRectangleInt = RectangleInt(0, 0, width, height)
 
 	constructor(width: Int, height: Int, value: RGBA, premultiplied: Boolean = false) : this(width, height, premultiplied = premultiplied) { data.fill(value) }
@@ -46,14 +46,14 @@ class Bitmap32(
         }
     }
 
-    operator fun set(x: Int, y: Int, color: RGBA) = run { data[index(x, y)] = color }
+    operator fun set(x: Int, y: Int, color: RGBA) { data[index(x, y)] = color }
 	operator fun get(x: Int, y: Int): RGBA = data[index(x, y)]
 
-	override fun setInt(x: Int, y: Int, color: Int) = run { data[index(x, y)] = RGBA(color) }
+	override fun setInt(x: Int, y: Int, color: Int) { data[index(x, y)] = RGBA(color) }
 	override fun getInt(x: Int, y: Int): Int = data.ints[index(x, y)]
 
     override fun getRgba(x: Int, y: Int): RGBA = data[index(x, y)]
-	override fun setRgba(x: Int, y: Int, v: RGBA): Unit = run { data[index(x, y)] = v }
+	override fun setRgba(x: Int, y: Int, v: RGBA): Unit { data[index(x, y)] = v }
 
 	fun setRow(y: Int, row: IntArray) {
 		arraycopy(row, 0, data.ints, index(0, y), width)
@@ -110,8 +110,8 @@ class Bitmap32(
         }
         val availableWidth = width - dx
         val availableHeight = height - dy
-        val awidth = min2(availableWidth, sright - sleft)
-        val aheight = min2(availableHeight, sbottom - stop)
+        val awidth = min(availableWidth, sright - sleft)
+        val aheight = min(availableHeight, sbottom - stop)
         _drawUnchecked(src, dx, dy, sleft, stop, sleft + awidth, stop + aheight, mix)
 	}
 
