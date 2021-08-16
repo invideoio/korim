@@ -31,6 +31,7 @@ abstract class Bitmap(
 
     /** Associated texture object to this Bitmap that could be used by other engines */
 	var texture: Any? = null
+    var transformMat: Matrix3D = Matrix3D()
 
     /** Specifies whether mipmaps should be created for this [Bitmap] */
     var mipmaps: Boolean = false
