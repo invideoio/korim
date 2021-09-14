@@ -24,4 +24,16 @@ allprojects {
         this.duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.EXCLUDE
         //println("Task $this")
     }
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.jetbrains.space/invideo/p/mobile/korgelibs")
+
+            val spaceUsername = project.properties["space.username"] as String?
+            val spacePassword = project.properties["space.password"] as String?
+            credentials {
+                username = spaceUsername
+                password = spacePassword
+            }
+        }
+    }
 }

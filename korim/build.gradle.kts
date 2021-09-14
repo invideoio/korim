@@ -13,3 +13,5 @@ dependencies {
     add("commonMainApi", "com.soywiz.korlibs.korio:korio:$korioVersion")
     add("commonMainApi", "com.soywiz.korlibs.korma:korma:$kormaVersion")
 }
+
+apply(from="publish.gradle.kts")
