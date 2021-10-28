@@ -8,6 +8,7 @@ import com.soywiz.korim.font.*
 import com.soywiz.korim.paint.Paint
 import com.soywiz.korio.util.*
 import com.soywiz.korma.geom.*
+import kotlin.native.concurrent.SharedImmutable
 
 abstract class TextRendererActions {
     protected val glyphMetrics = GlyphMetrics()
@@ -213,6 +214,7 @@ fun CreateStringTextRenderer(
     }
 }
 
+@SharedImmutable
 val DefaultStringTextRenderer: TextRenderer<String> = CreateStringTextRenderer { text, n, c, c1, g, advance ->
     put(c)
     advance(advance)
